@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-grid>
+
+      <ion-row>
+
+    <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+      <ion-item>
+        <ion-icon name="contact" slot="start"></ion-icon>
+        <ion-label position="stacked" color="primary">Nome completo</ion-label>
+        <ion-input formControlName="nome" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="at" slot="start"></ion-icon>
+        <ion-label position="stacked" color="primary">Email</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <p class="danger" *ngIf="formulario.controls.email.dirty && formulario.controls.email.errors">Insira um email,
+        válido!</p>
+
+
+      <ion-item>
+        <ion-icon name="create" slot="start"></ion-icon>
+        <ion-label position="stacked" color="primary">CPF</ion-label>
+        <ion-input formControlName="cpf" type="text"></ion-input>
+      </ion-item>
+
+      <p class="danger" *ngIf="formulario.controls.cpf.dirty && formulario.controls.cpf.errors" margin-left>CPF
+        inválido, insira apenas números</p>
+
+      <ion-list>
+        <ion-radio-group radio-group formControlName="sexo">
+          <ion-list-header>
+            <ion-label position="stacked" color="primary">Sexo</ion-label>
+          </ion-list-header>
+          <ion-item>
+            <ion-icon name="man"></ion-icon>
+            <ion-label>Masculino</ion-label>
+            <ion-radio checked="true" value="Masculino"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="woman"></ion-icon>
+            <ion-label>Feminino</ion-label>
+            <ion-radio value="Feminino"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+
+      <ion-item>
+        <ion-icon name="egg" slot="start"></ion-icon>
+        <ion-label position="stacked" color="primary" text-wrap>Data de nascimento</ion-label>
+        <ion-datetime displayFormat="DD/MMMM/YYYY" pickerFormat="DD/MMMM/YYYY"
+          monthNames="Janeiro,Fevereiro,Março,Abril,Maio,Junho,Julho,Agosto,Setembro,Outubro,Novembro,Dezembro "
+          formControlName="dataNascimento"></ion-datetime>
+      </ion-item>
+      <p class="danger" *ngIf="formulario.controls.dataNascimento.dirty && formulario.controls.dataNascimento.errors"
+        margin-left>Apenas maiores de 18 anos podem</p>
+
+      <ion-button expand="block" shape="round" type="submit" [disabled]="formulario.invalid">Enviar   <ion-icon name="person-add"></ion-icon></ion-button>
+    </form>
+  </ion-row>
+  </ion-grid>
+
+
+</ion-content>
